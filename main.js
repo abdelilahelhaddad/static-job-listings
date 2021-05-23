@@ -1,30 +1,55 @@
-const cname = document.querySelector(".cname");
+// const main = document.querySelector(".main");
 
-function createLinkSection() {
-  var HTMLSection = document.createElement('div');
-  HTMLSection.className = 'shorted';
-  HTMLSection.innerHTML = `
-    <a href="${url.value}" class="original-link">${url.value}</a>
-    <div class="shorted-link-copy">
-    <a href="${link.result.full_short_link}" class="shorted-link">${link.result.full_short_link}</a>
-    <a href="#" id="copytext" dclass="btn btnCopy">Copy</a>
-    </div>
-  `;
-
-  shortLinkSection.appendChild(HTMLSection);
-
-  storeLink(url.value, link.result.full_short_link);
+function getJobsData() {
+  axios
+    .get("data.json")
+    .then(res => jobBox(res))
+    .catch(err => console.error(err));
 }
+// fetch("./data.json")
+//   .then(response => {
+//     return response.json();
+//   })
+//   .then(data => console.log(data));
 
-const jobsData = 'data.json';
-
-async function getShorten() {
-  try {
-    const {
-      data
-    } = await axios(jobsData);
-    createLinkSection(data);
-  } catch (error) {
-    console.log(error)
+function jobBox(res) {
+  let jobsData = res.data;
+  let langsTools = "";
+  for (let i = 0; i < jobsData.length; i++) {
+    main.innerHTML = `
+    <div class="box container">
+    <img class="logo" src="${jobsData[i].logo}" alt="">
+    <div class="content">
+      <div class="company mb">
+        <span class="companyName">${jobsData[i].company}</span>
+        <p class="${jobsData[i].new} new">New!</p>
+        <p class="${jobsData[i].featured} featured">Featured</p>
+      </div>
+      <div class="position mb">
+        <p>${jobsData[i].position}</p>
+      </div>
+      <div class="postInfos mb">
+        <p>${jobsData[i].postedAt}</p>
+        <p>${jobsData[i].contract}</p>
+        <p>${jobsData[i].location}</p>
+      </div>
+    </div>
+    <div class="tags">
+      <span class="tagBg">${jobsData[i].role}</span>
+      <span class="tagBg">${jobsData[i].level}</span>    ` + langsTools;
+    langsTools +=
+      "span class = 'tagBg' > HTML < /span> <"
+    "span class = 'tagBg' > CSS < /span> <"
+    "span class = 'tagBg' > JavaScript < /span> < /"
+    "div >"
+    "</div>"
+    "}";
+    for (let j = 0; j < jobsData[i].languages.length; j++) {
+      "span class = 'tagBg' >"
+      jobsData[i].languages[j];
+      "< /span> <"
+    }
   }
 }
+
+document.addEventListener("DOMContentLoaded", getJobsData());
