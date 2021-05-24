@@ -1,4 +1,4 @@
-// const main = document.querySelector(".main");
+const main = document.querySelector("#main");
 
 function getJobsData() {
   axios
@@ -14,7 +14,6 @@ function getJobsData() {
 
 function jobBox(res) {
   let jobsData = res.data;
-  let langsTools = "";
   for (let i = 0; i < jobsData.length; i++) {
     main.innerHTML = `
     <div class="box container">
@@ -35,20 +34,13 @@ function jobBox(res) {
       </div>
     </div>
     <div class="tags">
-      <span class="tagBg">${jobsData[i].role}</span>
-      <span class="tagBg">${jobsData[i].level}</span>    ` + langsTools;
-    langsTools +=
-      "span class = 'tagBg' > HTML < /span> <"
-    "span class = 'tagBg' > CSS < /span> <"
-    "span class = 'tagBg' > JavaScript < /span> < /"
-    "div >"
-    "</div>"
-    "}";
-    for (let j = 0; j < jobsData[i].languages.length; j++) {
-      "span class = 'tagBg' >"
-      jobsData[i].languages[j];
-      "< /span> <"
-    }
+        <span class="tagBg">Frontend</span>
+        <span class="tagBg">Senior</span>
+        <span class="tagBg">HTML</span>
+        <span class="tagBg">CSS</span>
+        <span class="tagBg">JavaScript</span>
+      </div>
+    `
   }
 }
 
