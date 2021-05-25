@@ -4,6 +4,24 @@ const fetchJobs = async () => {
   await getJobs();
 }
 
+const creatNew = (newValue) => {
+  const newV = document.querySelectorAll(".new");
+  if (newValue === true) {
+    return newV.innerHTML = "<p class='new'>New!</p>";
+  } else {
+    return "";
+  }
+}
+
+const creatFeatured = (featuredValue) => {
+  const featuredV = document.querySelectorAll(".featured");
+  if (featuredValue === true) {
+    return featuredV.innerHTML = "<p class='featured'>Featured</p>";
+  } else {
+    return "";
+  }
+}
+
 const getJobs = async () => {
   const url = "data.json";
   const res = await fetch(url);
@@ -17,13 +35,18 @@ const createJobs = (job) => {
     jobEl.classList.add('box');
     jobEl.classList.add('container');
 
+    // let lang = job[i].languages;
+    // for (let j = 0; j < lang.length; j++) {
+    //   return lang[j];
+    // }
+
     const jobInnerHTML = `
   <img class="logo" src="${job[i].logo}" alt="">
   <div class="content">
     <div class="company mb">
       <span class="companyName">${job[i].company}</span>
-      <p class="new">New!</p>
-      <p class="featured">Featured</p>
+      ${creatNew(job[i].new)}
+      ${creatFeatured(job[i].featured)}
     </div>
     <div class="position mb">
       <p>${job[i].position}</p>
