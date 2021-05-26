@@ -30,19 +30,15 @@ const getJobs = async () => {
 }
 
 const createJobs = (job) => {
+
   for (let i = 0; i < job.length; i++) {
     const jobEl = document.createElement('div');
     jobEl.classList.add('box');
     jobEl.classList.add('container');
 
-    // let lang = job[i].languages;
-    // for (let j = 0; j < lang.length; j++) {
-    //   return lang[j];
-    // }
-
     const jobInnerHTML = `
-  <img class="logo" src="${job[i].logo}" alt="">
-  <div class="content">
+    <img class="logo" src="${job[i].logo}" alt="">
+    <div class="content">
     <div class="company mb">
       <span class="companyName">${job[i].company}</span>
       ${creatNew(job[i].new)}
@@ -58,11 +54,10 @@ const createJobs = (job) => {
     </div>
   </div>
   <div class="tags">
-    <span class="tagBg">Frontend</span>
-    <span class="tagBg">Senior</span>
-    <span class="tagBg">HTML</span>
-    <span class="tagBg">CSS</span>
-    <span class="tagBg">JavaScript</span>
+    <a href='#'><span class='tagBg'>${job[i].role}</span></a>
+    <a href='#'><span class='tagBg'>${job[i].level}</span></a>
+    ${job[i].languages ? job[i].languages.map((language) => "<a href='#'><span class='tagBg'>"+ language +"</span></a>").join(" "):""}
+    ${job[i].tools ? job[i].tools.map((tool) => "<a href='#'><span class='tagBg'>"+ tool +"</span></a>").join(" "):""}
   </div>
   `;
 

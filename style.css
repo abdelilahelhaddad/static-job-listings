@@ -146,4 +146,8 @@ span {
       flex-wrap: wrap;
   gap: 1rem;
 }
+
+#main .box .tags a {
+  text-decoration: none;
+}
 /*# sourceMappingURL=style.css.map */
