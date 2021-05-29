@@ -37,6 +37,7 @@ const createJobs = (job) => {
     jobEl.classList.add('container');
 
     const jobInnerHTML = `
+    <div class="logo-content">
     <img class="logo" src="${job[i].logo}" alt="">
     <div class="content">
     <div class="company mb">
@@ -53,6 +54,7 @@ const createJobs = (job) => {
       <p>${job[i].location}</p>
     </div>
   </div>
+  </div>
   <div class="tags">
     <a href='#'><span class='tagBg'>${job[i].role}</span></a>
     <a href='#'><span class='tagBg'>${job[i].level}</span></a>
@@ -64,6 +66,33 @@ const createJobs = (job) => {
     jobEl.innerHTML = jobInnerHTML;
     main.appendChild(jobEl);
   }
+
+  const para = document.querySelectorAll("p");
+
+  for (let j = 0; j < para.length; j++) {
+    if (para[j].classList.contains("featured")) {
+      para[j].parentElement.parentElement.parentElement.parentElement.style.borderLeft = "4px solid #5ba4a4";
+    }
+  }
+  const tags = document.querySelector(".tags");
+  const tagBg = document.querySelectorAll(".tagBg");
+  const filter_tags = document.querySelector(".filter_tags");
+
+  filter_tags.addEventListener("click", (e) => {
+    if (e.target.parentElement.classList.contains("tag")) {
+      e.target.parentElement.remove();
+    }
+  })
 }
 
+
 fetchJobs();
+
+const filter = document.querySelector("#filter");
+const clear = document.querySelector(".clear");
+const filter_tags = document.querySelector(".filter_tags");
+
+clear.addEventListener("click", () => {
+  filter_tags.innerHTML = "";
+  filter.style.display = "none";
+})
