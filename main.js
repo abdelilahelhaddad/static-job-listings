@@ -56,10 +56,10 @@ const createJobs = (job) => {
   </div>
   </div>
   <div class="tags">
-    <a href='#'><span class='tagBg'>${job[i].role}</span></a>
-    <a href='#'><span class='tagBg'>${job[i].level}</span></a>
-    ${job[i].languages ? job[i].languages.map((language) => "<a href='#'><span class='tagBg'>"+ language +"</span></a>").join(" "):""}
-    ${job[i].tools ? job[i].tools.map((tool) => "<a href='#'><span class='tagBg'>"+ tool +"</span></a>").join(" "):""}
+    <a class='tagWrapper' href='#'><span class='tagBg'>${job[i].role}</span></a>
+    <a class='tagWrapper' href='#'><span class='tagBg'>${job[i].level}</span></a>
+    ${job[i].languages ? job[i].languages.map((language) => "<a class='tagWrapper' href='#'><span class='tagBg'>"+ language +"</span></a>").join(" "):""}
+    ${job[i].tools ? job[i].tools.map((tool) => "<a class='tagWrapper' href='#'><span class='tagBg'>"+ tool +"</span></a>").join(" "):""}
   </div>
   `;
 
@@ -74,8 +74,7 @@ const createJobs = (job) => {
       para[j].parentElement.parentElement.parentElement.parentElement.style.borderLeft = "4px solid #5ba4a4";
     }
   }
-  const tags = document.querySelector(".tags");
-  const tagBg = document.querySelectorAll(".tagBg");
+  const tags = document.querySelectorAll(".tags");
   const filter_tags = document.querySelector(".filter_tags");
 
   filter_tags.addEventListener("click", (e) => {
@@ -83,6 +82,25 @@ const createJobs = (job) => {
       e.target.parentElement.remove();
     }
   })
+
+  for (let k = 0; k < tags.length; k++) {
+
+    tags[k].addEventListener("click", (e) => {
+      if (e.target.parentElement.classList.contains("tagWrapper")) {
+        const tagContent = e.target.parentElement.textContent;
+
+        const filterTag = document.createElement('div');
+        filterTag.classList.add('tag');
+
+        const filterTagInnerHTML = `
+      <a href='#'><span class='tagBg'>${tagContent}</span></a><img class="remove" src="./images/icon-remove.svg" alt="">
+    `;
+
+        filterTag.innerHTML = filterTagInnerHTML;
+        filter_tags.appendChild(filterTag);
+      }
+    })
+  }
 }
 
 
