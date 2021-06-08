@@ -236,16 +236,18 @@ a {
       flex-direction: row;
       justify-content: space-between;
 
-      .logo {
-        margin-top: 0;
-        width: 90px;
-        height: 90px;
-        align-self: center;
-      }
+      .logo-content {
+        .logo {
+          margin-top: 0;
+          width: 90px;
+          height: 90px;
+          align-self: center;
+        }
 
-      .content {
-        margin-top: 0;
-        margin-left: 2rem;
+        .content {
+          margin-top: 0;
+          margin-left: 2rem;
+        }
       }
 
       .tags {

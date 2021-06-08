@@ -269,7 +269,7 @@ a {
         -ms-flex-pack: justify;
             justify-content: space-between;
   }
-  #main .box .logo {
+  #main .box .logo-content .logo {
     margin-top: 0;
     width: 90px;
     height: 90px;
@@ -277,7 +277,7 @@ a {
         -ms-grid-row-align: center;
         align-self: center;
   }
-  #main .box .content {
+  #main .box .logo-content .content {
     margin-top: 0;
     margin-left: 2rem;
   }

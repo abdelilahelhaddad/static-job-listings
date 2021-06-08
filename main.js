@@ -85,6 +85,8 @@ const createJobs = (job) => {
 
   for (let k = 0; k < tags.length; k++) {
     tags[k].addEventListener("click", (e) => {
+      const filter = document.querySelector("#filter");
+      filter.style.display = "flex";
       const tagContent = e.target.parentElement.textContent;
       if (e.target.parentElement.classList.contains("tagWrapper")) {
 
@@ -98,6 +100,7 @@ const createJobs = (job) => {
         filterTag.innerHTML = filterTagInnerHTML;
         filter_tags.appendChild(filterTag);
       }
+
       const tagWrapper = document.querySelectorAll(".tagWrapper");
       for (let m = 0; m < tagWrapper.length; m++) {
         if (tagContent.indexOf(tagWrapper[m]) != -1) {
@@ -116,7 +119,12 @@ const filter = document.querySelector("#filter");
 const clear = document.querySelector(".clear");
 const filter_tags = document.querySelector(".filter_tags");
 
-clear.addEventListener("click", () => {
+function clearFunc() {
   filter_tags.innerHTML = "";
   filter.style.display = "none";
+}
+
+clear.addEventListener("click", () => {
+  clearFunc();
+  location.reload();
 })
