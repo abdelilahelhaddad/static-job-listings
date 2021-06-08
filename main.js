@@ -1,4 +1,5 @@
 const main = document.querySelector("#main");
+const filter = document.querySelector("#filter");
 
 const fetchJobs = async () => {
   await getJobs();
@@ -30,7 +31,7 @@ const getJobs = async () => {
 }
 
 const createJobs = (job) => {
-
+  filter.style.display = "none";
   for (let i = 0; i < job.length; i++) {
     const jobEl = document.createElement('div');
     jobEl.classList.add('box');
@@ -85,7 +86,6 @@ const createJobs = (job) => {
 
   for (let k = 0; k < tags.length; k++) {
     tags[k].addEventListener("click", (e) => {
-      const filter = document.querySelector("#filter");
       filter.style.display = "flex";
       const tagContent = e.target.parentElement.textContent;
       if (e.target.parentElement.classList.contains("tagWrapper")) {
@@ -95,7 +95,7 @@ const createJobs = (job) => {
 
         const filterTagInnerHTML = `
       <a href='#'><span class='tagBg'>${tagContent}</span></a><img class="remove" src="./images/icon-remove.svg" alt="">
-    `;
+      `;
 
         filterTag.innerHTML = filterTagInnerHTML;
         filter_tags.appendChild(filterTag);
@@ -109,22 +109,22 @@ const createJobs = (job) => {
           tagWrapper[m].parentElement.parentElement.style.display = "none";
         }
       }
+
+      clear.addEventListener("click", () => {
+        filter_tags.innerHTML = "";
+        filter.style.display = "none";
+        location.reload()
+      })
     })
   }
 }
 
 fetchJobs();
 
-const filter = document.querySelector("#filter");
 const clear = document.querySelector(".clear");
 const filter_tags = document.querySelector(".filter_tags");
 
-function clearFunc() {
+clear.addEventListener("click", () => {
   filter_tags.innerHTML = "";
   filter.style.display = "none";
-}
-
-clear.addEventListener("click", () => {
-  clearFunc();
-  location.reload();
 })
