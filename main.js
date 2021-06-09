@@ -103,8 +103,9 @@ const createJobs = (job) => {
 
       const tagWrapper = document.querySelectorAll(".tagWrapper");
       for (let m = 0; m < tagWrapper.length; m++) {
+        console.log(tagContent.indexOf(tagWrapper[m]));
         if (tagContent.indexOf(tagWrapper[m]) != -1) {
-          tagWrapper[m].parentElement.parentElement.style.display = "flex";
+          tagWrapper[m].parentElement.parentElement.style.display = "none";
         } else {
           tagWrapper[m].parentElement.parentElement.style.display = "none";
         }
